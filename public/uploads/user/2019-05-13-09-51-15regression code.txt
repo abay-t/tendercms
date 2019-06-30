@@ -1,0 +1,63 @@
+
+------------------------------
+#Follow along with the video
+
+#I downloaded the data (wage_data.csv, 8k) from my website:
+# https://sites.google.com/site/curtiskephart/ta/econ113
+#  This file appears on my computer in the Downloads folder. 
+WageData <- read.csv("C:\\Users\\Admin\\Downloads\\wage_data.csv")
+
+#have a quick look at the data
+str(WageData)
+summary(WageData)
+
+-------------------------------
+#the regression
+
+?lm
+
+LevLevReg <- lm(Wage~Education+Experience+Age,WageData)
+
+summary(LevLevReg)
+anova(LevLevReg)
+
+coefficients(LevLevReg)
+fitted.values(LevLevReg)
+residuals(LevLevReg)
+
+---------------------------------
+?I
+
+---------------------------------
+#Interaction Effect
+
+LevLevReg2 <- lm(Wage~Education+ Experience+Age+I(Experience*Age),WageData)
+summary(LevLevReg2)
+
+LevLevReg3  <- lm(Wage~Education+Experience*Age,WageData)
+summary(LevLevReg3)
+
+LevLevReg4  <- lm(Wage~Education+I(Experience*Age),WageData)
+summary(LevLevReg4)
+
+------------------------------
+#Quadratic Variable
+
+LevLevReg5 <- lm(Wage~Education+ Experience+(Experience)^2+Age,WageData)
+    #nope
+summary(LevLevReg5)
+
+LevLevReg6 <- lm(Wage~Education+ Experience+I(Experience^2)+Age,WageData)
+summary(LevLevReg6)
+
+
+
+
+
+
+
+
+
+
+
+
